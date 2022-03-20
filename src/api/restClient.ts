@@ -1,10 +1,11 @@
-import { Hotel, Traslation } from "./model";
+import { Hotel, HotelFilter, Room, Traslation } from "./model";
 
 export type UrlCreator = ReturnType<typeof createUrlCreator>;
 
 function createUrlCreator(apiUrl: string) {
   return {
     hotels: () => `${apiUrl}/hotels`,
+    availability: (filter: HotelFilter) => `${apiUrl}/availability/${filter.code}/${filter.from?.toISOString()}/${filter.to?.toISOString()}/`,
     traslations: () => `${apiUrl}/traslations`,
   };
 }
@@ -37,7 +38,13 @@ export class RestApiClient {
   public getHotels() {
     return get(this.urlCreator.hotels())
       .then((response) => checkStatus(response))
-      .then<Hotel>((response) => response.json());
+      .then<Hotel[]>((response) => response.json());
+  }
+
+  public getAvailability(filter: HotelFilter) {
+    return get(this.urlCreator.availability(filter))
+      .then((response) => checkStatus(response))
+      .then<Room[]>((response) => response.json());
   }
 
   public getTraslations() {

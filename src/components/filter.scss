@@ -1,0 +1,44 @@
+.filter {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 600px;
+  padding: 5px;
+}
+
+.column {
+  padding: 5px;
+}
+
+label {
+  color: gray;
+  font-size: 15px;
+  margin-right: 5px;
+}
+
+button,
+input,
+select {
+  border: 1px solid black;
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 60px;
+  color: black;
+  letter-spacing: 0.01em;
+}
+
+button,
+select {
+  min-width: 120px;
+}
+
+button:enabled {
+  color: white;
+  background-color: #04aa6d;
+  cursor: pointer;
+}
+
+button {
+  margin-top: 20px;
+}
